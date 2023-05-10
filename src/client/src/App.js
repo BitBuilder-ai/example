@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import logo from "./react-logo.svg";
 import nodejsLogo from "./nodejs-logo.svg";
@@ -13,6 +14,12 @@ function App() {
     // Specify how to clean up after this effect:
     return () => {};
   }, []); // empty 2nd arg - only runs once
+
+  const emojis = ["😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "😊", "😇"];
+
+  const getRandomEmoji = () => {
+    return emojis[Math.floor(Math.random() * emojis.length)];
+  };
 
   return (
     <div className="App">
@@ -42,7 +49,9 @@ function App() {
         <br />
         <p>
           <code>GET /api/users</code>:{" "}
-          {users.length ? users.join(", ") : "loading..."}
+          {users.length
+            ? users.map(user => user + getRandomEmoji()).join(", ")
+            : "loading..."}
         </p>
         <br />
         <p>
